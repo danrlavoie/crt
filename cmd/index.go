@@ -7,9 +7,11 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"database/sql"
 	"github.com/spf13/cobra"
 	"path/filepath"
+	"strings"
 )
 
 // indexCmd represents the index command
@@ -34,7 +36,17 @@ to quickly create a Cobra application.`,
 		fileroot := args[0] // or an env variable
 		// Walk through each file in the fileroot
 		err := filepath.Walk(fileroot, func(path string, info os.FileInfo, err error) error {
-			fmt.Println(path)
+			if (! info.IsDir()) {
+				//fmt.Println(info.Name())
+				//fmt.Println(filepath.Ext(path))
+				cmd := exec.Command("md5sum", path)
+				var out strings.Builder
+				cmd.Stdout = &out
+				err = cmd.Run()
+				execOut := out.String()
+				md5, _, _ := strings.Cut(execOut, " ")
+				fmt.Println(path, md5)
+			}
 			return nil
 		})
 
