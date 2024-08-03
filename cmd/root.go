@@ -15,7 +15,7 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "crt",
-	Short: "A brief description of your application",
+	Short: "CRT manages a local library of video media",
 	Long: `A longer description that spans multiple lines and likely contains
 examples and usage of using your application. For example:
 
