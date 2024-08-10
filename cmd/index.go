@@ -45,7 +45,7 @@ to quickly create a Cobra application.`,
 				err = cmd.Run()
 				execOut := out.String()
 				md5, _, _ := strings.Cut(execOut, " ")
-				fmt.Println(path, md5)
+				fmt.Println(path, md5, filepath.Base(path))
 			}
 			return nil
 		})

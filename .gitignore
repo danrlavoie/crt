@@ -26,3 +26,5 @@ crt
 # Database
 *.db
 *.db-journal
+
+/id_mappings
